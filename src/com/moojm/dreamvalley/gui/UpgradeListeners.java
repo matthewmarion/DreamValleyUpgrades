@@ -1,5 +1,6 @@
 package com.moojm.dreamvalley.gui;
 
+import com.moojm.dreamvalley.DreamValleyUpgradesPlugin;
 import com.moojm.dreamvalley.command.UpgradeCommand;
 import com.moojm.dreamvalley.database.MySqlUpgradeRepository;
 import com.moojm.dreamvalley.object.UpgradeTown;
@@ -12,6 +13,7 @@ import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.Town;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +30,13 @@ public class UpgradeListeners implements Listener {
         if (!isUpgradeInventory(player)) {
             return;
         }
+        Town town = getTown(player.getName());
+
+        if (!playerIsMayor(player, town)) {
+            event.setCancelled(true);
+            return;
+        }
+
         if (event.getRawSlot() >= event.getInventory().getSize()) {
             event.setCancelled(true);
             return;
@@ -50,7 +59,6 @@ public class UpgradeListeners implements Listener {
             return;
         }
 
-        Town town = getTown(player.getName());
         UpgradeTown upgradeTown = UpgradeTown.getTownFromName(town.getName());
         if (!canUpgrade(selectedPerk, upgradeTown)) {
             event.setCancelled(true);
@@ -72,6 +80,16 @@ public class UpgradeListeners implements Listener {
         event.setCancelled(true);
         player.closeInventory();
         player.sendMessage(ChatUtil.toColor("&l&aSUCCESS &r&eTransaction for &b" + selectedPerk.getName() + " &ehas completed."));
+    }
+
+    private boolean playerIsMayor(Player player, Town town) {
+        try {
+            Resident resident = TownyUniverse.getDataSource().getResident(player.getName());
+            return town.isMayor(resident);
+        } catch (NotRegisteredException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private boolean canUpgrade(Perk perk, UpgradeTown upgradeTown) {

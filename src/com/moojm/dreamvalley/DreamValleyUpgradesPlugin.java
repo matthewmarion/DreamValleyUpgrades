@@ -3,10 +3,12 @@ package com.moojm.dreamvalley;
 import com.moojm.dreamvalley.command.UpgradeCommand;
 import com.moojm.dreamvalley.database.MySQL;
 import com.moojm.dreamvalley.gui.UpgradeListeners;
+import com.moojm.dreamvalley.perks.PerkListeners;
 import com.moojm.dreamvalley.utils.ConsoleUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +31,18 @@ public class DreamValleyUpgradesPlugin extends JavaPlugin {
         setupDatabase(this.getConfig());
         Bukkit.getServer().getPluginManager().registerEvents(new UpgradeCommand(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new UpgradeListeners(), this);
+        PerkListeners perkListeners = new PerkListeners();
+        Bukkit.getServer().getPluginManager().registerEvents(perkListeners, this);
+        /*Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                if (PerkListeners.getPlayersInTown().size() != 0) {
+                    System.out.println("Setting potion effects in runnable again..");
+                    perkListeners.givePlayersEffects();
+                }
+
+            }
+        }, 0, 40L);*/
     }
 
     @Override

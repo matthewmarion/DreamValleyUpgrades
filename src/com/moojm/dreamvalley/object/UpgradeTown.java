@@ -4,8 +4,12 @@ import com.moojm.dreamvalley.database.MySqlUpgradeRepository;
 import com.moojm.dreamvalley.perks.Perk;
 import com.moojm.dreamvalley.perks.PerkType;
 import com.moojm.dreamvalley.utils.ConsoleUtils;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Level;
 
 public class UpgradeTown {
@@ -35,6 +39,26 @@ public class UpgradeTown {
             ConsoleUtils.log(Level.WARNING, "Town does not exist.");
         }
         return null;
+    }
+
+    public Set<PotionEffect> getEffectsFromTiers() {
+        Set<PotionEffect> effects = new HashSet<>();
+        if (speedTier > 0) {
+            effects.add(new PotionEffect(PotionEffectType.SPEED, 5000000, speedTier - 1));
+        }
+        if (jumpTier > 0) {
+            effects.add(new PotionEffect(PotionEffectType.JUMP, 5000000, jumpTier - 1));
+        }
+        if (regenTier > 0) {
+            effects.add(new PotionEffect(PotionEffectType.REGENERATION, 5000000, regenTier - 1));
+        }
+        if (saturationTier > 0) {
+            effects.add(new PotionEffect(PotionEffectType.SATURATION, 5000000, saturationTier - 1));
+        }
+        if (strenthTier > 0) {
+            effects.add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 5000000, strenthTier - 1));
+        }
+        return effects;
     }
 
     public int getTierFromPerk(Perk perk) {

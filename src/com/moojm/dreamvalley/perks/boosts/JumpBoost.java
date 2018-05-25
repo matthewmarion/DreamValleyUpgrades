@@ -1,7 +1,6 @@
 package com.moojm.dreamvalley.perks.boosts;
 
 import com.moojm.dreamvalley.DreamValleyUpgradesPlugin;
-import com.moojm.dreamvalley.object.UpgradeTown;
 import com.moojm.dreamvalley.perks.Perk;
 import com.moojm.dreamvalley.perks.PerkType;
 import org.bukkit.Material;

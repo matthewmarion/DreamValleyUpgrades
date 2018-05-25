@@ -31,10 +31,6 @@ public class UpgradeCommand implements Listener {
                 Resident resident = TownyUniverse.getDataSource().getResident(player.getName());
                 Town town = resident.getTown();
                 player.sendMessage(ChatUtil.toColor("&aOpening town upgrades panel."));
-                if (!town.isMayor(resident)) {
-                    player.sendMessage(ChatUtil.toColor(ChatUtil.NO_PERMISSION));
-                    return;
-                }
                 String townName = town.getName();
                 if (!isRegistered(townName)) {
                     UpgradeTown upgradeTown = new UpgradeTown.UpgradeTownBuilder().setTownName(townName)
