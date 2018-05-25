@@ -27,7 +27,7 @@ public class UpgradeInventory {
 
         ItemStack border = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 11);
         ItemMeta meta = border.getItemMeta();
-        meta.setDisplayName("");
+        meta.setDisplayName(" ");
         border.setItemMeta(meta);
 
         for (int i = 0; i < inventory.getSize(); i++) {

@@ -46,7 +46,7 @@ public class MySQL extends Database {
     public void createTables() {
         try {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Town_Upgrades(town VARCHAR(36), speedTier TINYINT, jumpTier TINYINT, regenTier TINYINT, saturationTier TINYINT, strengthTier TINYINT);");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Town_Upgrades(town VARCHAR(36), speed TINYINT, jump TINYINT, regen TINYINT, saturation TINYINT, strength TINYINT);");
         } catch (SQLException e) {
             e.printStackTrace();
         }
