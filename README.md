@@ -1,5 +1,8 @@
 # DreamValleyUpgrades
 
+![Showcase](https://i.gyazo.com/ce2abec17ee14ddd917b3015b371b34c.png)
+![Showcase](https://i.gyazo.com/b299780012591c559c4c9cdcbf4034cc.mp4)
+
 DreamValleyUpgrades is a plugin made for a private client that allows Towny mayors to upgrade their town with different potion effects.
 Mayors can purchase different upgrades using the money allocated in their town bank. 
 
@@ -19,7 +22,8 @@ Mayors can purchase different upgrades using the money allocated in their town b
 
 ## Configuration
 Default configuration file:
-`mysql:
+```YAML
+mysql:
   hostname: 
   port: 
   database: 
@@ -48,4 +52,5 @@ perks:
     item: BLAZE_POWDER
     tier-one: 50
     tier-two: 100
-    tier-three: 200`
+    tier-three: 200
+    ```
