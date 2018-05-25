@@ -53,4 +53,3 @@ perks:
     tier-one: 50
     tier-two: 100
     tier-three: 200
-    ```
