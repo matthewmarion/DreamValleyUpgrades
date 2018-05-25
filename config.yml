@@ -1,0 +1,30 @@
+mysql:
+  hostname:
+  port:
+  database:
+  username:
+  password:
+perks:
+  speed-boost:
+    item: SUGAR
+    tier-one: 50
+    tier-two: 100
+    tier-three: 200
+  jump-boost:
+    item: FEATHER
+    tier-one: 50
+    tier-two: 100
+    tier-three: 200
+  regen:
+    item: REDSTONE
+    tier-one: 50
+    tier-two: 100
+    tier-three: 200
+  saturation:
+    item: GOLDEN_CARROT
+    tier-one: 50
+  strength:
+    item: BLAZE_POWDER
+    tier-one: 50
+    tier-two: 100
+    tier-three: 200
