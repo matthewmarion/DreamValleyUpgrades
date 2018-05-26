@@ -7,12 +7,12 @@ import com.moojm.dreamvalley.utils.ConsoleUtils;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 
 public class UpgradeTown {
+
+    private static List<UpgradeTown> towns = new ArrayList<>();
 
     private String townName;
     private int speedTier;
@@ -30,13 +30,15 @@ public class UpgradeTown {
         this.strenthTier = builder.strenthTier;
     }
 
+    public static void setTowns(List<UpgradeTown> towns) {
+        UpgradeTown.towns = towns;
+    }
+
     public static UpgradeTown getTownFromName(String townName) {
-        MySqlUpgradeRepository repository = new MySqlUpgradeRepository();
-        UpgradeTown town = repository.get(townName);
-        try {
-            return town;
-        } catch (NullPointerException e) {
-            ConsoleUtils.log(Level.WARNING, "Town does not exist.");
+        for (UpgradeTown town : towns) {
+            if (town.getTownName().equals(townName)) {
+                return town;
+            }
         }
         return null;
     }
@@ -100,6 +102,10 @@ public class UpgradeTown {
 
     public int getStrenthTier() {
         return strenthTier;
+    }
+
+    public static List<UpgradeTown> getTowns() {
+        return towns;
     }
 
     public static final class UpgradeTownBuilder {

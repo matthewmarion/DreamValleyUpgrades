@@ -47,6 +47,7 @@ public class UpgradeListeners implements Listener {
             return;
         }
 
+        //if item is border
         if (item.getType() == Material.STAINED_GLASS_PANE) {
             event.setCancelled(true);
             return;
@@ -81,6 +82,7 @@ public class UpgradeListeners implements Listener {
         player.closeInventory();
         player.sendMessage(ChatUtil.toColor("&l&aSUCCESS &r&eTransaction for &b" + selectedPerk.getName() + " &ehas completed."));
     }
+
 
     private boolean playerIsMayor(Player player, Town town) {
         try {

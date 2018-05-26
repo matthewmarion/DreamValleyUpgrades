@@ -33,16 +33,7 @@ public class DreamValleyUpgradesPlugin extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new UpgradeListeners(), this);
         PerkListeners perkListeners = new PerkListeners();
         Bukkit.getServer().getPluginManager().registerEvents(perkListeners, this);
-        /*Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                if (PerkListeners.getPlayersInTown().size() != 0) {
-                    System.out.println("Setting potion effects in runnable again..");
-                    perkListeners.givePlayersEffects();
-                }
-
-            }
-        }, 0, 40L);*/
+        mySQL.createUpgradeTowns();
     }
 
     @Override

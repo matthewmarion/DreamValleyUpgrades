@@ -4,11 +4,14 @@ import com.moojm.dreamvalley.DreamValleyUpgradesPlugin;
 import com.moojm.dreamvalley.object.UpgradeTown;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MySqlUpgradeRepository {
+public class MySqlUpgradeRepository implements UpgradeRespository {
 
     private static final String UPGRADES_TABLE = "Town_Upgrades";
 
+    @Override
     public void add(UpgradeTown town) {
         try {
             Connection connection = DreamValleyUpgradesPlugin.getMySQL().getConnection();
@@ -27,6 +30,7 @@ public class MySqlUpgradeRepository {
         }
     }
 
+    @Override
     public UpgradeTown get(String townName) {
         try {
             Connection connection = DreamValleyUpgradesPlugin.getMySQL().getConnection();
@@ -50,6 +54,28 @@ public class MySqlUpgradeRepository {
         return null;
     }
 
+    @Override
+    public List<UpgradeTown> getAll() {
+        List<UpgradeTown> towns = new ArrayList<>();
+        try {
+            Connection connection = DreamValleyUpgradesPlugin.getMySQL().getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM " + UPGRADES_TABLE + ";";
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                UpgradeTown upgradeTown = new UpgradeTown.UpgradeTownBuilder().setSpeedTier(result.getInt("speed")).
+                        setJumpTier(result.getInt("jump")).setRegenTier(result.getInt("regen")).setSaturationTier(result.getInt("saturation"))
+                        .setStrenthTier(result.getInt("strength")).build();
+                towns.add(upgradeTown);
+            }
+            return towns;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void update(String perk, UpgradeTown upgradeTown, int tier) {
         try {
             Connection connection = DreamValleyUpgradesPlugin.getMySQL().getConnection();

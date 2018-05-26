@@ -35,7 +35,7 @@ public class UpgradeCommand implements Listener {
                 if (!isRegistered(townName)) {
                     UpgradeTown upgradeTown = new UpgradeTown.UpgradeTownBuilder().setTownName(townName)
                             .setSpeedTier(0).setJumpTier(0).setRegenTier(0).setSaturationTier(0).setStrenthTier(0).build();
-                    repository.add(upgradeTown);
+                    UpgradeTown.getTowns().add(upgradeTown);
                 }
                 openUpgrades(player, townName);
             } catch (NotRegisteredException e) {
@@ -45,7 +45,7 @@ public class UpgradeCommand implements Listener {
     }
 
     private boolean isRegistered(String townName) {
-        return repository.get(townName) != null;
+        return UpgradeTown.getTownFromName(townName) != null;
     }
 
     private void openUpgrades(Player player, String townName) {

@@ -1,5 +1,7 @@
 package com.moojm.dreamvalley.database;
 
+import com.moojm.dreamvalley.object.UpgradeTown;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class MySQL extends Database {
+
+   MySqlUpgradeRepository mySqlUpgradeRepository;
 
     private Connection connection;
     private String hostname;
@@ -23,6 +27,7 @@ public class MySQL extends Database {
         this.database = database;
         this.username = username;
         this.password = password;
+        this.mySqlUpgradeRepository = new MySqlUpgradeRepository();
     }
 
     @Override
@@ -51,4 +56,9 @@ public class MySQL extends Database {
             e.printStackTrace();
         }
     }
+
+    public void createUpgradeTowns() {
+        UpgradeTown.setTowns(mySqlUpgradeRepository.getAll());
+    }
+
 }
