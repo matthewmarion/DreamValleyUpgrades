@@ -1,5 +1,7 @@
 # DreamValleyUpgrades
 
+*Note: This project was created per request for a client is for display purposes only.
+
 ![Showcase](https://i.gyazo.com/ce2abec17ee14ddd917b3015b371b34c.png)
 ![Showcase](https://i.imgur.com/1yaWTP6.gif)
 
