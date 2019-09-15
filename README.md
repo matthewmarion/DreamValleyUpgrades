@@ -2,9 +2,6 @@
 
 *Note: This project was created per request for a client is for display purposes only.
 
-![Showcase](https://i.gyazo.com/ce2abec17ee14ddd917b3015b371b34c.png)
-![Showcase](https://i.imgur.com/1yaWTP6.gif)
-
 DreamValleyUpgrades is a plugin made for a private client that allows Towny mayors to upgrade their town with different potion effects.
 Mayors can purchase different upgrades using the money allocated in their town bank. 
 
